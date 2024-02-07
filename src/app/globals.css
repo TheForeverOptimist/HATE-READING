@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 
+
+/* this is where i use ui.shadcn.com to capture their themes */
+
 @layer base {
   :root {
     --background: 0 0% 100%;
