@@ -15,8 +15,10 @@
 ## Setup
 
 ## Tailwind CSS Configuration
+#I setup Dark Mode & Themes for containers, padding, sizing etc, and extended certain UI components like border-radius, keyframes and animmations to keep the visuals consistent throughout the App.
 
 ## Getting Started
+#The Icon library being used is Lucide-React.
 
 ## License
 ---
