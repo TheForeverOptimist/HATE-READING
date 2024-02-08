@@ -18,7 +18,8 @@
 #I setup Dark Mode & Themes for containers, padding, sizing etc, and extended certain UI components like border-radius, keyframes and animmations to keep the visuals consistent throughout the App.
 
 ## Getting Started
-#The Icon library being used is Lucide-React.
+#The Icon library being used is Lucide-React which is a light weight library
+#For Themes and UI Components I decided to go with ShadCN-UI. Which is a very seamless easy UI platform.
 
 ## License
 ---
