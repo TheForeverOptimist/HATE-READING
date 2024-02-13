@@ -21,6 +21,7 @@
 #The Icon library being used is Lucide-React which is a light weight library
 #For Themes and UI Components I decided to go with ShadCN-UI. Which is a very seamless easy UI platform.
 
+#I chose to use Kinde-oss for my auth as this seamlessly integrates into nextjs
 ## License
 ---
 [MIT](https://choosealicense.com/licenses/mit/)
