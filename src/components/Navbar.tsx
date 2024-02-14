@@ -10,7 +10,7 @@ const Navbar = () => {
         <MaxWidthWrapper>
           <div className="flex h-14 justify-between items-center border-b border-zinc-200">
             <Link href="/" className="flex z-40 font-semibold">
-              <span>DocuTalk.</span>
+              <span>DocVersation.</span>
             </Link>
 
             {/* todo: add mobile navbar */}
