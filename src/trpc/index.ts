@@ -1,6 +1,7 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/dist/types/server";
 import { publicProcedure, router } from "./trpc";
 import { TRPCError } from "@trpc/server";
+import { db } from "@/db";
 
 export const appRouter = router({
   authCallback: publicProcedure.query(async () => {
@@ -12,6 +13,12 @@ export const appRouter = router({
     }
 
     // check if the user is in the database
+    const dbUser = await db.user.findFirst({
+      where: {
+        id: user.id
+      }
+    })
+
 
     return { success: true };
   }),
