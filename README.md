@@ -1,6 +1,6 @@
 # DocVersation
 
-### DocVersation is a SaaS application that utilizes TypeScript/JavaScript within a NextJS + Tailwind framework. The goal of this SaaS is to be able to read and interpret PDFs that are submitted to the application. It includes different payment tiers utilizing Stripe APIs.
+### DocVersation is a SaaS application that utilizes TypeScript/JavaScript within a NextJS + Tailwind framework. This SaaS Application digests and interprets your PDFs allowing you to have a conversation about the submitted PDFs without reading them yourself. It includes different payment tiers utilizing Stripe APIs.
 
 ## Table of Contents
 

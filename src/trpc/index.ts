@@ -1,4 +1,4 @@
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/dist/types/server";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { publicProcedure, router } from "./trpc";
 import { TRPCError } from "@trpc/server";
 import { db } from "@/db";
@@ -18,6 +18,16 @@ export const appRouter = router({
         id: user.id
       }
     })
+
+    if(!dbUser){
+      //create user in db
+      await db.user.create({
+        data: {
+          id: user.id,
+          email: user.email
+        }
+      })
+    }
 
 
     return { success: true };
