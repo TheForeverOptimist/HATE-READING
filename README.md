@@ -31,13 +31,18 @@
 ## Setup
 
 ## Tailwind CSS Configuration
-#I setup Dark Mode & Themes for containers, padding, sizing etc, and extended certain UI components like border-radius, keyframes and animmations to keep the visuals consistent throughout the App.
+I setup Dark Mode & Themes for containers, padding, sizing etc, and extended certain UI components like border-radius, keyframes and animmations to keep the visuals consistent throughout the App.
 
 ## Getting Started
-#The Icon library being used is Lucide-React which is a light weight library
-#For Themes and UI Components I decided to go with ShadCN-UI. Which is a very seamless easy UI platform.
+The Icon library being used is Lucide-React which is a light weight library
+For Themes and UI Components I decided to go with ShadCN-UI. Which is a very seamless easy UI platform.
 
-#I chose to use Kinde-oss for my auth as this seamlessly integrates into nextjs
+Technical Package Choices:
+Kinde-OSS for Auth
+Prisma as our ORM
+PlanetScale as our MySQL Database
+Zod for our TypeScript-first schema validation
+
 ## License
 ---
 [MIT](https://choosealicense.com/licenses/mit/)
