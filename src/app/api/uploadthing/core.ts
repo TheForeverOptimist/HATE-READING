@@ -1,3 +1,4 @@
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/dist/types/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 
@@ -6,13 +7,13 @@ const f = createUploadthing();
 const auth = (req: Request) => ({ id: "fakeId" });
 
 export const ourFileRouter = {
-  imageUploader: f({ image: { maxFileSize: "4MB" } })
+  pdfUploader: f({ image: { maxFileSize: "4MB" } })
     .middleware(async ({ req }) => {
-      const user = await auth(req);
+        const {getUser} = getKindeServerSession();
+        const user = await getUser();
+        if(!user || !user.id) throw new Error('UNAUTHROZIED');
 
-      if (!user) throw new UploadThingError("Unauthorized");
-
-      return { userId: user.id };
+        return{userId: user.id}
     })
     .onUploadComplete(async ({ metadata, file }) => {
       console.log("Upload complete for userId:", metadata.userId);
