@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/dist/types/server";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { userAgent } from "next/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
