@@ -11,11 +11,11 @@ const auth = (req: Request) => ({ id: "fakeId" });
 export const ourFileRouter = {
   pdfUploader: f({ pdf: { maxFileSize: "4MB" } })
     .middleware(async ({ req }) => {
-        const {getUser} = getKindeServerSession();
-        const user = await getUser();
-        if(!user || !user.id) throw new Error('UNAUTHROZIED');
+      const { getUser } = getKindeServerSession();
+      const user = await getUser();
+      if (!user || !user.id) throw new Error("UNAUTHROZIED");
 
-        return{userId: user.id}
+      return { userId: user.id };
     })
     .onUploadComplete(async ({ metadata, file }) => {
       const createdfile = await db.file.create({
@@ -23,10 +23,10 @@ export const ourFileRouter = {
           key: file.key,
           name: file.name,
           userId: metadata.userId,
-          url: `https://uploadthing-prod.s3.us-west-2.amazonaws.com/${file.key}`,
+          url: `https://utfs.io/f/${file.key}`,
           uploadStatus: "PROCESSING",
-        }
-      })
+        },
+      });
     }),
 } satisfies FileRouter;
 
