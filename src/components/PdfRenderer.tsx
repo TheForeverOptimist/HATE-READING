@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, ChevronUp, Divide, Loader2 } from "lucide-react";
+import { ChevronDown, ChevronUp, Divide, Loader2, Search } from "lucide-react";
 import { Page, Document, pdfjs } from "react-pdf";
 
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
@@ -15,6 +15,7 @@ import { z } from "zod";
 
 import {zodResolver} from '@hookform/resolvers/zod'
 import { cn } from "@/libs/utils";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -71,7 +72,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
           </Button>
 
           <div className="flex items-center gap-1.5">
-            <Input {...register('page')} className={cn('w-12 h-8', errors.page && "outline-red-500")} onKeyDown={(e) => {
+            <Input {...register('page')} className={cn('w-12 h-8', errors.page && "focus-visible:ring-red-500")} onKeyDown={(e) => {
               if(e.key === "Enter"){
                 handleSubmit(handlePageSubmit)();
               }
@@ -93,6 +94,20 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
           >
             <ChevronDown className="h-4 w-4" />
           </Button>
+        </div>
+        <div className="space-x-2">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button aria-label='zoom' variant='ghost'>
+                <Search className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+          </DropdownMenu>
+          <DropdownMenuContent>
+            <DropdownMenuItem>
+              100%
+            </DropdownMenuItem>
+          </DropdownMenuContent>
         </div>
       </div>
 
