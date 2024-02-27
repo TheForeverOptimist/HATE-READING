@@ -32,7 +32,7 @@ const ChatWrapper = ({fileId}: ChatWrapperProps) => {
           </p>
         </div>
       </div>
-      <ChatInput />
+      <ChatInput isDisabled/>
     </div>
   )
 
