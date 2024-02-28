@@ -10,7 +10,7 @@ export const POST = async (req: NextRequest) => {
 
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-
+//@ts-ignore
   const {id: userId} = user
 
   if (!userId) 
