@@ -19,10 +19,9 @@ const ChatWrapper = ({ fileId }: ChatWrapperProps) => {
     },
     {
       refetchInterval: (data) =>
-          data?.status === "SUCCESS" || data?.status === "FAILED" ? false : 500
+          data?.status === "SUCCESS" || data?.status === "FAILED" ? false : 1000
     }
   );
-
   if (isLoading)
     return (
       <div className="relative min-h-full bg-zinc-50 flex divide-y divide-zinc-200 flex-col justify-between gap-2">
