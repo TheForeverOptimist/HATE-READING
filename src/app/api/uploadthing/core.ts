@@ -33,19 +33,20 @@ export const ourFileRouter = {
         },
       });
 
-      try{
+      try {
         const index = new Index({
           url: process.env.UPSTASH_VECTOR_REST_URL as string,
           token: process.env.UPSTASH_VECTOR_REST_TOKEN as string,
         });
 
         const embeddings = new OpenAIEmbeddings({
-          openAIApiKey: process.env.OPENAI_API_KEY
-        })
+          openAIApiKey: process.env.OPENAI_API_KEY,
+        });
 
         const upstashVector = new UpstashVectorStore(embeddings, {
-          index
+          index,
         });
+
         const response = await fetch(`https://utfs.io/f/${file.key}`);
         const blob = await response.blob();
 
@@ -53,38 +54,31 @@ export const ourFileRouter = {
 
         const pageLevelDocs = await loader.load();
 
-        // console.log('pageLevelDocs:', pageLevelDocs)
-
-        // const documents = pageLevelDocs.map((page, index) => ({
-        //   metadata: {userId: metadata.userId, page: index + 1},
-        //   pageContent: typeof page === 'string' ? page : ''
-        // }))
-
-        // console.log('documents:', documents)
-        
         await upstashVector.addDocuments(pageLevelDocs);
 
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        // Waiting vectors to be indexed in the vector store.
+        // eslint-disable-next-line no-promise-executor-return
+        await new Promise((resolve) => setTimeout(resolve, 1000));
 
         await db.file.update({
-          data:{
-            uploadStatus: "SUCCESS"
+          data: {
+            uploadStatus: "SUCCESS",
           },
           where: {
-            id: createdfile.id
-          }
-        })
-      }catch (err){
+            id: createdfile.id,
+          },
+        });
+      } catch (err) {
         await db.file.update({
           data: {
-            uploadStatus: "FAILED"
+            uploadStatus: "FAILED",
           },
           where: {
-            id: createdfile.id
-          }
-        })
+            id: createdfile.id,
+          },
+        });
       }
-    })
-} satisfies FileRouter;
+    }),
+} as FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;
