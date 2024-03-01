@@ -54,6 +54,7 @@ export const ourFileRouter = {
         const loader = new PDFLoader(blob);
 
         const pageLevelDocs = await loader.load();
+        console.log("pageLevelDocs: ", pageLevelDocs);
         
         try{
           await upstashVector.addDocuments(pageLevelDocs);
