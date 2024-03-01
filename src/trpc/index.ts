@@ -86,11 +86,11 @@ export const appRouter = router({
       }
       return {
         messages,
-        nextCursor,
+        nextCursor
       }
 
-    })
-  }),
+    }),
+  
 
   getFileUploadStatus: privateProcedure
     .input(z.object({ fileId: z.string() }))
