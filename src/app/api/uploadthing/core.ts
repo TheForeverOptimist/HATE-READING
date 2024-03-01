@@ -13,6 +13,7 @@ const f = createUploadthing();
 
 const auth = (req: Request) => ({ id: "fakeId" });
 
+
 export const ourFileRouter = {
   pdfUploader: f({ pdf: { maxFileSize: "4MB" } })
     .middleware(async ({ req }) => {
@@ -53,12 +54,19 @@ export const ourFileRouter = {
         const loader = new PDFLoader(blob);
 
         const pageLevelDocs = await loader.load();
-
-        await upstashVector.addDocuments(pageLevelDocs);
+        
+        try{
+          await upstashVector.addDocuments(pageLevelDocs);
+        }catch(err){
+          console.error("Error generating or indexing embeddings:", err)
+        }
 
         // Waiting vectors to be indexed in the vector store.
         // eslint-disable-next-line no-promise-executor-return
         await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        const queryResult = await upstashVector.similaritySearchWithScore("The company and influencer agree to enter into a partnership", 1);
+        console.log("queryResult: ", queryResult);
 
         await db.file.update({
           data: {
