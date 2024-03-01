@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { SendMessageValidators } from "@/libs/validators/SendMessageValidator";
+import { SendMessageValidator } from "@/libs/validators/SendMessageValidator";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { NextRequest } from "next/server";
 
@@ -16,7 +16,7 @@ export const POST = async (req: NextRequest) => {
   if (!userId) 
     return new Response("Unauthorized", { status: 401 });
 
-    const {fileId, message} = SendMessageValidators.parse(body)
+    const {fileId, message} = SendMessageValidator.parse(body)
 
     const file = await db.file.findFirst({
         where: {
@@ -35,5 +35,5 @@ export const POST = async (req: NextRequest) => {
             fileId,
         }
     })
-    //
+    //this is where we ask a LLM
 }
