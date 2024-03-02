@@ -4,12 +4,17 @@ import { keepPreviousData } from "@tanstack/react-query";
 import { Loader2, MessageSquare } from "lucide-react";
 import Skeleton from "react-loading-skeleton";
 import Message from "./Message";
+import { useContext } from "react";
+import { ChatContext } from "./ChatContext";
 
 interface MessagesProps {
   fileId: string;
 }
 
 const Messages = ({ fileId }: MessagesProps) => {
+
+  const {isLoading: isAiThinking } = useContext(ChatContext)
+
   const { data, isLoading, fetchNextPage } =
     trpc.getFileMessages.useInfiniteQuery(
       {
@@ -34,7 +39,7 @@ const Messages = ({ fileId }: MessagesProps) => {
   };
 
   const combinedMessages = [
-    ...(true ? [loadingMessage] : []),
+    ...(isAiThinking ? [loadingMessage] : []),
     ...(messages ?? []),
   ];
 
