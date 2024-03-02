@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useState } from "react";
 import { useToast } from "../ui/use-toast";
 import { useMutation } from "@tanstack/react-query";
+import { trpc } from "@/app/_trpc/client";
 
 type StreamResponse = {
   addMessage: () => void;
@@ -25,6 +26,8 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
   const [message, setMessage] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
+  const utils = trpc.useUtils()
+
   const { toast } = useToast();
 
   const { mutate: sendMessage } = useMutation({
@@ -42,6 +45,9 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
 
       return response.body;
     },
+    onMutate: () => {
+      
+    }
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
