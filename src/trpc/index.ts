@@ -43,6 +43,10 @@ export const appRouter = router({
     });
   }),
 
+  createStripeSession: privateProcedure.mutation(({ctx}) => {
+    const {userId} = ctx
+  }),
+
   getFileMessages: privateProcedure.input(
     z.object({
       limit: z.number().min(1).max(100).nullish(),
