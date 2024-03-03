@@ -129,17 +129,43 @@ const Page = async () => {
                   </div>
 
                   <ul className="my-10 space-y-5 px-8">
-                    {features.map(({ text, footnote, negative }) => (
-                      <li key={text} className="flex space-x-5">
-                        <div className="flex-shrink-0">
-                          {negative ? (
-                            <Minus className="h-6 w-6 text-gray-300" />
+                    {features.map(
+                      ({
+                        text,
+                        footnote,
+                        negative,
+                      }: {
+                        text: string;
+                        footnote?: string;
+                        negative?: boolean;
+                      }) => (
+                        <li key={text} className="flex space-x-5">
+                          <div className="flex-shrink-0">
+                            {negative ? (
+                              <Minus className="h-6 w-6 text-gray-300" />
+                            ) : (
+                              <Check className="h-6 w-6 text-blue-500" />
+                            )}
+                          </div>
+                          {footnote ? (
+                            <div className="flex items-center space-x-1">
+                              <p
+                                className={cn("text-gray-600", {
+                                  "text-gray-400": negative,
+                                })}
+                              >
+                                {text}
+                              </p>
+                              <Tooltip delayDuration={300}>
+                                <TooltipTrigger className="cursor-default ml-1.5">
+                                  <HelpCircle className="h-4 w-4 text-zinc-500" />
+                                </TooltipTrigger>
+                                <TooltipContent className="w-80 p-2">
+                                  {footnote}
+                                </TooltipContent>
+                              </Tooltip>
+                            </div>
                           ) : (
-                            <Check className="h-6 w-6 text-blue-500" />
-                          )}
-                        </div>
-                        {footnote ? (
-                          <div className="flex items-center space-x-1">
                             <p
                               className={cn("text-gray-600", {
                                 "text-gray-400": negative,
@@ -147,26 +173,10 @@ const Page = async () => {
                             >
                               {text}
                             </p>
-                            <Tooltip delayDuration={300}>
-                              <TooltipTrigger className="cursor-default ml-1.5">
-                                <HelpCircle className="h-4 w-4 text-zinc-500" />
-                              </TooltipTrigger>
-                              <TooltipContent className="w-80 p-2">
-                                {footnote}
-                              </TooltipContent>
-                            </Tooltip>
-                          </div>
-                        ) : (
-                          <p
-                            className={cn("text-gray-600", {
-                              "text-gray-400": negative,
-                            })}
-                          >
-                            {text}
-                          </p>
-                        )}
-                      </li>
-                    ))}
+                          )}
+                        </li>
+                      )
+                    )}
                   </ul>
                   <div className="border-t border-gray-200" />
                   <div className="p-5">
