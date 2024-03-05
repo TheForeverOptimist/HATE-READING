@@ -24,7 +24,7 @@
 - ✨ Instant Loading States
 - 🔧 Modern Data Fetching Using tRPC & Zod
 - 🧠 LangChain for Infinite AI Memory
-- 🌲 Pinecone for Vector Storage
+- 📈 Upstash Vector for Vector Storage
 - 📊 Prisma for ORM
 - 🔤 100% written in TypeScript
 

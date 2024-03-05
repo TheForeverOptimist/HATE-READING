@@ -89,7 +89,7 @@ export default function Home() {
             </h2>
             <p className="mt-4 text-lg text-gray-600">
               Chatting to your PDF files has never been easier than with
-              DocuTalk.
+              DocVersation.
             </p>
           </div>
         </div>
@@ -132,7 +132,7 @@ export default function Home() {
                 Start asking questions
               </span>
               <span className="mt-2 text-zinc-600">
-                It&apos;s that simple. Try out DocuTalk today - it really takes
+                It&apos;s that simple. Try out DocVersation today - it really takes
                 less than a minute.
               </span>
             </div>
