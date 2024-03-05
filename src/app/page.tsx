@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
+import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
 export default function Home() {
   return (
@@ -21,16 +22,15 @@ export default function Home() {
           DocVersation allows you to have conversations with any PDF document.
           Simply upload your file and start asking questions right away.
         </p>
-        <Link
-          className={buttonVariants({
-            size: "lg",
-            className: "mt-5",
-          })}
-          href="/dashboard"
-          target="_blank"
-        >
-          Get Started <ArrowRight className="ml-2 h-5 w-5" />
-        </Link>
+        <div className="mt-4">
+          <RegisterLink
+            className={buttonVariants({
+              size: "sm",
+            })}
+          >
+            Get Started <ArrowRight className="ml-1.5 h-5 w-5" />
+          </RegisterLink>
+        </div>
       </MaxWidthWrapper>
 
       {/* Value Proposition Section */}
@@ -132,8 +132,8 @@ export default function Home() {
                 Start asking questions
               </span>
               <span className="mt-2 text-zinc-600">
-                It&apos;s that simple. Try out DocVersation today - it really takes
-                less than a minute.
+                It&apos;s that simple. Try out DocVersation today - it really
+                takes less than a minute.
               </span>
             </div>
           </li>
