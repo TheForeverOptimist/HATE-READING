@@ -19,7 +19,7 @@ const Navbar = async () => {
       <MaxWidthWrapper>
         <div className="flex h-20 justify-between items-center border-b border-zinc-200">
           <Link href="/" className="flex z-40 font-semibold">
-            <Image src="/orangedocverse.png" alt="logo" width={200} height={70} />
+            <Image src="/hrlogo.png" alt="logo" width={200} height={70} />
           </Link>
 
           {/* todo: add mobile navbar */}

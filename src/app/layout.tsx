@@ -12,7 +12,7 @@ import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "DocVerse",
+  title: "X-READ",
   description: "A Generative AI Platform for Document Conversations",
 };
 
