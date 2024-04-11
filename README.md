@@ -1,6 +1,6 @@
-# DocVersation
+# HATE-READING.COM
 
-### DocVersation is a SaaS application that utilizes TypeScript/JavaScript within a NextJS + Tailwind framework. This SaaS Application digests and interprets your PDFs allowing you to have a conversation about the submitted PDFs without reading them yourself. It includes different payment tiers utilizing Stripe APIs.
+### HATE-READING.COM is a SaaS application that utilizes TypeScript/JavaScript within a NextJS + Tailwind framework. This SaaS Application digests and interprets your PDFs allowing you to have a conversation about the submitted PDFs without reading them yourself. It includes different payment tiers utilizing Stripe APIs.
 
 ## Table of Contents
 
