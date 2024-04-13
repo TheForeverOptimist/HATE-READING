@@ -1,12 +1,9 @@
-'use client'
+"use client";
 
-
-
-import { useRouter, useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation";
 import { trpc } from "../_trpc/client";
 import { useEffect, Suspense } from "react";
 import { Loader2 } from "lucide-react";
-
 
 const LoadingFallback = () => (
   <div className="w-full mt-24 flex justify-center">
@@ -19,42 +16,43 @@ const LoadingFallback = () => (
 );
 
 const AuthCallbackContent = () => {
-        const router = useRouter();
+  const router = useRouter();
 
-        const searchParams = useSearchParams();
-        const origin = searchParams.get("origin");
+  const searchParams = useSearchParams();
+  const origin = searchParams.get("origin");
 
-        const { data, isLoading, error } =
-          trpc.authCallback.useQuery(undefined);
+  const { data, isLoading, error } = trpc.authCallback.useQuery();
 
-        useEffect(() => {
-          //error code unauthorized
-          if (error?.data?.code === "UNAUTHORIZED") {
+    useEffect(() => {
+      if (!isLoading) {
+        if (error) {
+          // Handle errors (e.g., unauthorized access)
+          if (error.data?.code === "UNAUTHORIZED") {
             router.push("/sign-in");
-          } else if (!isLoading) {
-            router.push(
-              data !== undefined && data.success && origin
-                ? `${origin}`
-                : "/dashboard"
-            );
+          } else {
+            // Optionally handle other types of errors or provide generic error handling
+            router.push("/error"); // Redirecting to a generic error page
           }
-          // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [data, isLoading]);
+        } else if (data && data.success) {
+          // Redirect to origin if available, otherwise go to dashboard
+          router.push(origin || "/dashboard");
+        } else {
+          // Handle case where data might not be as expected
+          router.push("/sign-in");
+        }
+      }
+    }, [data, isLoading, error, origin, router]);
 
-        return null;
-
-}
-
-
+    // No need to return any JSX as this component only handles redirection
+    return null;
+};
 
 const Page = () => {
-    return (
-        <Suspense fallback={<LoadingFallback />}>
-            <AuthCallbackContent />
-        </Suspense>
-    )
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <AuthCallbackContent />
+    </Suspense>
+  );
+};
 
-}
-
-
-export default Page
+export default Page;
